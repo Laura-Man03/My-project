@@ -12,7 +12,7 @@ public class Collectable : MonoBehaviour
         {
            
           controller. AddScore(1);
-            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
     

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerRb;
 
-    public int maxHealth = 5;
+    public int maxHealth = 100;
     int currentHealth = 1;
     //made a canvas and TMP to display for player.
     private int score = 0;
