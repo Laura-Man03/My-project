@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,11 +13,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerRb;
 
-    public int maxHealth = 100;
-    int currentHealth = 1;
+    //public int maxHealth = 100;
+    public int Health = 100;
+
+    public int currentHealth = 0;
+    //int currentHealth = 1;
     //made a canvas and TMP to display for player.
     private int score = 0;
-    //=====find a way to make the display work!=====
+  
     public TMP_Text scoreText;
     public TMP_Text healthText;
     
@@ -25,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody2D>();
         //spriteRenderer = GetComponent<SpriteRenderer>();
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
     }
     
 
@@ -34,18 +39,38 @@ public class PlayerController : MonoBehaviour
     {
         //left to right movement
         playerRb.linearVelocityX = moveDirection * moveSpeed;
+        
     }
-    //==== get enemies to effect health to get a health collectable ====
+        // ---- Damage ----
+        private void OnTriggerEnter(Collider other)
+        {
+            if (CompareTag("Enemy"))
+            {
+                Damage(10);
+            }
+        }
+          
+        private void Damage(int value)
+        {
+            Health -= value;
+        }
+        
         // ---- Health ----
+        
+        //how do i make the health display show the damage? 
+        //i need to take the value of damage and display it when use
+        //health collectable to heal player. enemy takes away 10, 
+        //health pack gives 10 displaying that
         public void ChangeHealth(int amount)
         {
-            currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+            //currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
             //currentHealth cannot be set to a value that is over or below 0
-            Debug.Log(currentHealth + " / " + maxHealth);
-            healthText.text = $"<b>Health</b>: {currentHealth}";
+            
+            //healthText.text = $"<b>Health</b>: {currentHealth}";
+            healthText.text = $"<b>Health</b>: {Health}";
         }
-    
-    //---- Points ----
+      
+        //---- Points ----
     public void AddScore(int points)
     {
         score = score + points;

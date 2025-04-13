@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class HeatlCollectable : MonoBehaviour
 {
-    //health collection  
+    //---- Health Collectable ----
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
     
         if (controller != null)
         {
-            //this will only activate if the playercontroller is active different health collectable
-            controller.ChangeHealth(1);
+            controller.ChangeHealth(10);
             Destroy(gameObject);
         }
     }
