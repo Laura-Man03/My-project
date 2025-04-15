@@ -8,16 +8,16 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float jumpForce = 4f;
-
+    public LayerMask WhatIsGround;
+    
     private float moveDirection;
-
+    public bool isGrounded;
+    //later add when have animations ^
     private Rigidbody2D playerRb;
-
-    //public int maxHealth = 100;
+    
     public int Health = 100;
-
-    public int currentHealth = 0;
-    //int currentHealth = 1;
+    public int MaxHealth = 100;
+    
     //made a canvas and TMP to display for player.
     private int score = 0;
   
@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody2D>();
         //spriteRenderer = GetComponent<SpriteRenderer>();
-        //currentHealth = maxHealth;
     }
     
 
@@ -39,8 +38,10 @@ public class PlayerController : MonoBehaviour
     {
         //left to right movement
         playerRb.linearVelocityX = moveDirection * moveSpeed;
-        
+
+        GroundCheck();
     }
+    
         // ---- Damage ----
         private void OnTriggerEnter(Collider other)
         {
@@ -48,25 +49,24 @@ public class PlayerController : MonoBehaviour
             {
                 Damage(10);
             }
+
+            if (other.CompareTag("Heal"))
+            {
+                Health += 10;
+            }
         }
-          
+        
         private void Damage(int value)
         {
-            Health -= value;
+            ChangeHealth(Health - value);
         }
         
         // ---- Health ----
         
-        //how do i make the health display show the damage? 
-        //i need to take the value of damage and display it when use
-        //health collectable to heal player. enemy takes away 10, 
-        //health pack gives 10 displaying that
-        public void ChangeHealth(int amount)
+        public void ChangeHealth(int value)
         {
-            //currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-            //currentHealth cannot be set to a value that is over or below 0
-            
-            //healthText.text = $"<b>Health</b>: {currentHealth}";
+            //making sure health stays between 0 and maximum
+            Health = Mathf.Clamp(value, 0, MaxHealth);
             healthText.text = $"<b>Health</b>: {Health}";
         }
       
@@ -88,11 +88,18 @@ public class PlayerController : MonoBehaviour
        // }
     }
 
+    // ---- Jump ----
     private void OnJump(InputValue value)
     {
         //ensures that jump stays constant
         playerRb.linearVelocityY = jumpForce;
     }
     
+    private void GroundCheck()
+    {
+        RaycastHit2D hit  = Physics2D.BoxCast(transform.position, Vector2.one * 0.1f, 0, Vector2.down, 0.2f, WhatIsGround.value);
+        
+        isGrounded = hit.collider != null;
+    }
    
 }
