@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     //later add when have animations ^
     private Rigidbody2D playerRb;
     
-    public int Health = 100;
+    public int currentHealth;
     public int MaxHealth = 100;
     
     //made a canvas and TMP to display for player.
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        ChangeHealth(MaxHealth);
         //spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
@@ -38,36 +39,36 @@ public class PlayerController : MonoBehaviour
     {
         //left to right movement
         playerRb.linearVelocityX = moveDirection * moveSpeed;
-
+        
         GroundCheck();
     }
     
         // ---- Damage ----
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (CompareTag("Enemy"))
+            if (other.CompareTag("Enemy"))
             {
                 Damage(10);
             }
 
             if (other.CompareTag("Heal"))
             {
-                Health += 10;
+                ChangeHealth(currentHealth + 10);
             }
         }
         
-        private void Damage(int value)
+        private void Damage(int amount)
         {
-            ChangeHealth(Health - value);
+            ChangeHealth(currentHealth - amount);
         }
         
         // ---- Health ----
         
-        public void ChangeHealth(int value)
+        public void ChangeHealth(int newHealth)
         {
             //making sure health stays between 0 and maximum
-            Health = Mathf.Clamp(value, 0, MaxHealth);
-            healthText.text = $"<b>Health</b>: {Health}";
+            currentHealth = Mathf.Clamp(newHealth, 0, MaxHealth);
+            healthText.text = $"<b>Health</b>: {currentHealth}";
         }
       
         //---- Points ----

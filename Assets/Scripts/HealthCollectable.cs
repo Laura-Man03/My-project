@@ -9,7 +9,6 @@ public class HeatlCollectable : MonoBehaviour
     
         if (controller != null)
         {
-            controller.ChangeHealth(10);
             Destroy(gameObject);
         }
     }
