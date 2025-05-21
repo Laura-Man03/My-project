@@ -18,10 +18,6 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
     public int MaxHealth = 100;
     
-    //made a canvas and TMP to display for player.
-    private int score = 0;
-  
-    public TMP_Text scoreText;
     public TMP_Text healthText;
     
     //private SpriteRenderer spriteRenderer;
@@ -68,15 +64,9 @@ public class PlayerController : MonoBehaviour
         {
             //making sure health stays between 0 and maximum
             currentHealth = Mathf.Clamp(newHealth, 0, MaxHealth);
-            healthText.text = $"<b>Health</b>: {currentHealth}";
+            healthText.text = $"<b>Energy</b>: {currentHealth}";
         }
-      
-        //---- Points ----
-    public void AddScore(int points)
-    {
-        score = score + points;
-        scoreText.text = $"<b>Score: </b>{score}";
-    }
+        
     
     // ---- Movement ----
     private void OnMove(InputValue value)
