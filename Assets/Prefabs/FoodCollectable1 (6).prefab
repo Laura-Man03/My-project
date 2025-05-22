@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7359355256797076916}
   - component: {fileID: 3176003724602714507}
   - component: {fileID: 782802366421799407}
-  - component: {fileID: 8617739633882969511}
+  - component: {fileID: 2931290203577115856}
   m_Layer: 0
-  m_Name: HealthCollectable1
-  m_TagString: Untagged
+  m_Name: FoodCollectable1 (6)
+  m_TagString: Heal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +28,9 @@ Transform:
   m_GameObject: {fileID: 3033317121820852014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.164, y: -0.295, z: 9.918104}
-  m_LocalScale: {x: 0.21040002, y: 0.21040002, z: 0.2104}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 2.08, y: 10.91, z: 9.918104}
+  m_LocalScale: {x: 0.0141044995, y: 0.0141044995, z: 0.0141044995}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.63009083, g: 0.255686, b: 0.8050314, a: 1}
+  m_Sprite: {fileID: -8278247502315767834, guid: 77b4b7fc7c34d1b49b4499ca3158a6ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 39.03, y: 21.51605}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8617739633882969511
+--- !u!114 &2931290203577115856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +144,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3033317121820852014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1915552704655242bd6c867d16271cf, type: 3}
+  m_Script: {fileID: 11500000, guid: de43667116804df4ea4a210d7ced19e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
