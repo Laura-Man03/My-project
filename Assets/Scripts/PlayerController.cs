@@ -47,12 +47,10 @@ public class PlayerController : MonoBehaviour
         //left to right movement
         playerRb.linearVelocity = new Vector2(moveDirection * moveSpeed, playerRb.linearVelocity.y);
         GroundCheck();
-        //playerRb.linearVelocityX = moveDirection * moveSpeed;
         
         animator.SetBool("Is Grounded", isGrounded);
         animator.SetBool("Is Double Jumping", canDoubleJump == false);
         animator.SetFloat("Velocity Y", playerRb.linearVelocity.y);
-        //animator.SetFloat("Velocity Y", playerRb.linearVelocityY);
     }
     
         // ---- Damage ---- //
@@ -67,10 +65,10 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeHealth(currentHealth + 10);
             }
-            
+            //Win and lose conditions
             if (other.CompareTag("Exit"))
             {
-                if (currentHealth >= 100)
+                if (currentHealth >= 80)
                 {
                     winScreen.StartFade();
                 }
@@ -115,7 +113,6 @@ public class PlayerController : MonoBehaviour
     
     private void OnJump(InputValue value)
     {
-        
         if (canDoubleJump == true)
         {
             //ensures that the character always jumps at a specific speed
@@ -127,8 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             canDoubleJump = false;
         }
-    
-        Debug.Log("Jump!");
+        
     }
 
     // ---- Ground Check ---- //
@@ -148,7 +144,8 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             canDoubleJump = true;
+            
         }
-        Debug.Log("Grounded: " + isGrounded);
+        
     }
 }
