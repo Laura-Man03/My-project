@@ -35,6 +35,6 @@ public class LoseScript : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("OverWhelmed");
     }
 }
